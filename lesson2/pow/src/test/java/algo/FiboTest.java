@@ -2,38 +2,34 @@ package algo;
 
 import org.junit.jupiter.api.Test;
 import ru.otus.algo.Fibo;
-import ru.otus.algo.Pow;
 
-import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.util.List;
 
-import static org.otus.algo.TestMain.parseArgs;
-import static org.otus.algo.TestMain.runTestsAndCheckResult;
+import static org.otus.algo.TestMain.*;
 
 class FiboTest {
 
     @Test
     void iterTest() throws Exception {
-        runTestsAndCheckResult("./fibo-tests", input -> {
+        runTestsAndCheckResult(getTestResource(this.getClass(), "fibo-tests"), input -> {
             List<String> args = parseArgs(input);
-            return String.valueOf(new Fibo(Integer.parseInt(args.get(0))).iter());
+            return String.valueOf(new Fibo().iter(Integer.parseInt(args.get(0))));
         }, 11, 0); // tests > 10 are executed toooooooo long for this impl
     }
 
     @Test
     void recursiveTest() throws Exception {
-        runTestsAndCheckResult("./fibo-tests", input -> {
+        runTestsAndCheckResult(getTestResource(this.getClass(), "fibo-tests"), input -> {
             List<String> args = parseArgs(input);
-            return String.valueOf(new Fibo(Integer.parseInt(args.get(0))).recursive());
-        }, 8, 0); // tests > 7 are executed toooooooo long for this impl
+            return String.valueOf(new Fibo().recursive(Integer.parseInt(args.get(0))));
+        }, 7, 0); // tests > 6 are executed toooooooo long for this impl
     }
 
     @Test
     void goldenTest() throws Exception {
-        runTestsAndCheckResult("./fibo-tests", input -> {
+        runTestsAndCheckResult(getTestResource(this.getClass(), "fibo-tests"), input -> {
             List<String> args = parseArgs(input);
-            return String.valueOf(new Fibo(Integer.parseInt(args.get(0))).golden());
+            return String.valueOf(new Fibo().golden(Integer.parseInt(args.get(0))));
         }, 8, 0); // tests > 7 are executed toooooooo long for this impl
     }
 
