@@ -66,4 +66,10 @@ public class TestMain {
         String[] args = input.split("\\r?\\n");
         return Arrays.asList(args);
     }
+
+    public static String getTestResource(Class clazz, String testDirName) {
+        ClassLoader classLoader = clazz.getClassLoader();
+        File file = new File(classLoader.getResource(testDirName).getFile());
+        return file.getAbsolutePath();
+    }
 }
